@@ -1,4 +1,5 @@
 @extends('layout.app')
+@section('title', 'Data Jenis Barang')
 @section('content')
 <div class="content-body">
     <div class="row page-titles mx-0">
@@ -26,29 +27,58 @@
                             <thead>
                                 <tr>
                                     <th>No</th>
-                                    <th>Name Barang</th>
-                                    <th>qyt</th>
-                                    <th>Role</th>
+                                    <th>Jenis Barang</th>
                                     <th>Action</th>
                                 </tr>
                             </thead>
                             <tbody>
+
+                                @foreach ($JenisBarang as $key => $jenis)
                                 <tr>
-                                    <td>1</td>
-                                    <td>Admin</td>
-                                    <td>admin@gmail.com</td>
-                                    <td>admin</td>
+                                    <td>{{ $key + 1 }}</td>
+                                    <td>{{ $jenis->nama_jenis }}</td>
                                     <td>
-                                        <a href="" class="btn btn-primary btn-sm">Edit <i class="fa fa-edit"></i></a>
-                                        <a href="" class="btn btn-danger btn-sm">Hapus <i class="fa fa-trash"></a>
+                                        <button type="button" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#editUserModal">Edit <i class="fa fa-edit"></i> </button>
+                                        <form action="" method="POST" style="display:inline;">
+                                            @csrf
+                                            @method('DELETE')
+                                            <button type="submit" class="btn btn-danger btn-sm">Hapus <i class="fa fa-trash"></i></button>
+                                        </form>
                                     </td>
                                 </tr>
+                                @endforeach
                             </tbody>
                         </table>
                     </div>
                 </div>
             </div>
         </div>
+        </div>
+    </div>
+</div>
+
+
+<div class="modal fade bd-example-modal-lg" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Create Jenis Barang</h5>
+                <button type="button" class="close" data-dismiss="modal"><span>&times;</span></button>
+            </div>
+            <form method="POST" action="">
+                @csrf
+                <div class="modal-body">
+                    <div class="form-group">
+                        <label>Jenis Barang</label>
+                        <input type="text" name="jenis_barang" class="form-control input-default" placeholder="Jenis Barang">
+                    </div>
+                    
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn " data-dismiss="modal">Close</button>
+                    <button type="submit" class="btn btn-primary">Submit</button>
+                </div>
+            </form>
         </div>
     </div>
 </div>

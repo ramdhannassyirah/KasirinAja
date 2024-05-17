@@ -1,5 +1,5 @@
 @extends('layout.app')
-
+@section('title', 'Data Users')
 @section('content')
 <div class="content-body">
     <div class="row page-titles mx-0">

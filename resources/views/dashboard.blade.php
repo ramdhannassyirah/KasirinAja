@@ -1,4 +1,5 @@
 @extends('layout.app')
+@section('title', 'Dashboard')
 @section('content')
 <div class="content-body">
     <div class="row page-titles mx-0">

@@ -125,8 +125,8 @@
                         </a>
                         <ul aria-expanded="false">
                             <li><a href="{{ route('users.index')}}">Data Users</a></li>
-                            <li><a href="{{ route('barang')}}">Data Barang</a></li>
-                            <li><a href="{{ route('detailBarang')}}">Detail Barang</a></li>
+                            <li><a href="{{ route('barang.index')}}">Data Barang</a></li>
+                            <li><a href="{{ route('JenisBarang.index')}}">Detail Barang</a></li>
                         </ul>
                     </li>
                     @endif
