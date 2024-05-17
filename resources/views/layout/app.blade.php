@@ -83,7 +83,15 @@
                                         
                                         <hr class="my-2">
                                       
-                                        <li><a href="page-login.html"><i class="icon-key"></i> <span>Logout</span></a></li>
+                                        <li>
+                                            <a href="{{ route('logout') }}"
+                                               onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
+                                                <i class="icon-key"></i> <span>Logout</span>
+                                            </a>
+                                            <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                                                @csrf
+                                            </form>
+                                        </li>
                                     </ul>
                                 </div>
                             </div>
@@ -103,30 +111,35 @@
             <div class="nk-nav-scroll">
                 <ul class="metismenu" id="menu">
                     <li class="nav-label">Dashboard</li>
+                    <li>
+                        <a href="{{ route('dashboard') }}" aria-expanded="false">
+                            <i class="icon-badge menu-icon"></i><span class="nav-text">Dashboard</span>
+                        </a>
+                    </li>
 
-
+                    @if ( Auth::user()->role == 'admin' )
+                        
                     <li>
                         <a class="has-arrow" href="javascript:void()" aria-expanded="false">
                             <i class="icon-notebook menu-icon"></i><span class="nav-text">Data Member</span>
                         </a>
                         <ul aria-expanded="false">
-                            <li><a href="{{ route('data-user')}}">Data User</a></li>
+                            <li><a href="{{ route('users.index')}}">Data Users</a></li>
                             <li><a href="{{ route('barang')}}">Data Barang</a></li>
                             <li><a href="{{ route('detailBarang')}}">Detail Barang</a></li>
                         </ul>
+                    </li>
+                    @endif
+
+
+                    @if( Auth::user()->role == 'kasir' )
+                    <li>
+                        <a href="{{ route('transaksi') }}" aria-expanded="false">
+                            <i class="icon-note menu-icon"></i><span class="nav-text">Transaksi</span>
+                        </a>
                     </li>
 
-                    
-                    <li>
-                        <a class="has-arrow" href="javascript:void()" aria-expanded="false">
-                            <i class="icon-notebook menu-icon"></i><span class="nav-text">Detail transaksi</span>
-                        </a>
-                        <ul aria-expanded="false">
-                           
-                            <li><a href="{{ route('barang')}}">Data Barang</a></li>
-                            <li><a href="{{ route('detailBarang')}}">Detail Barang</a></li>
-                        </ul>
-                    </li>
+                    @endif
                 </ul>
             </div>
         </div>
