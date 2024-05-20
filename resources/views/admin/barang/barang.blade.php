@@ -7,8 +7,8 @@
     <div class="row page-titles mx-0">
         <div class="col p-md-0">
             <ol class="breadcrumb">
-                <li class="breadcrumb-item"><a href="javascript:void(0)">Barang</a></li>
-                <li class="breadcrumb-item active"><a href="javascript:void(0)">Barang</a></li>
+                <li class="breadcrumb-item"><a href="javascript:void(0)">{{ $title }}</a></li>
+                <li class="breadcrumb-item active"><a href="javascript:void(0)">{{ $title }}</a></li>
             </ol>
         </div>
     </div>
@@ -20,7 +20,7 @@
                         <div class="card-header">
                             <div class="d-flex justify-content-between align-items-center">
                                 <h4 class="card-title">Data Barang</h4>
-                                <button type="button" class="btn btn-primary" data-toggle="modal" data-target=".bd-example-modal-lg">Tambah Data</button>
+                                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#createBarangModal">Tambah Data</button>
                             </div>
                         </div>
                         <div class="table-responsive">
@@ -29,6 +29,7 @@
                                     <tr>
                                         <th>No</th>
                                         <th>Nama Barang</th>
+                                        <th>Jenis Barang</th>
                                         <th>Stok</th>
                                         <th>Harga</th>
                                         <th>Action</th>
@@ -39,25 +40,25 @@
                                     <tr>
                                         <td>{{ $key + 1 }}</td>
                                         <td>{{ $item->nama_barang }}</td>
+                                        <td>Makanan</td>
                                         <td>{{ $item->stok }}</td>
                                         <td>Rp. {{ number_format($item->harga, 0, ',', '.') }}</td>
                                         <td>
-                                            <button type="button" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#editUserModal">Edit <i class="fa fa-edit"></i></button>
-                                            <form action="{{ route('barang.destroy', $item->id_barang) }}" method="POST" style="display:inline;">
+                                            <button type="button" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#editUserModal{{ $item->id }}">Edit <i class="fa fa-edit"></i></button>
+                                            <form action="{{ route('barang.destroy', $item->id) }}" method="POST" style="display:inline;">
                                                 @csrf
                                                 @method('DELETE')
                                                 <button type="submit" class="btn btn-danger btn-sm">Hapus <i class="fa fa-trash"></i></button>
                                             </form>
                                         </td>
                                     </tr>
-                                    <div class="modal fade bd-example-modal-lg" id="editUserModal" tabindex="-1" role="dialog" aria-hidden="true">
+                                    <div class="modal fade bd-example-modal-lg" id="editUserModal{{ $item->id }}" tabindex="-1" role="dialog" aria-hidden="true">
                                         <div class="modal-dialog modal-lg">
                                             <div class="modal-content">
                                                 <div class="modal-header">
                                                     <h5 class="modal-title">Edit Data Barang</h5>
-                                                    <button type="button" class="close" data-dismiss="modal"><span>&times;</span></button>
                                                 </div>
-                                                <form method="POST" action="{{ route('barang.update', $item->id_barang) }}">
+                                                <form method="POST" action="{{ route('barang.update', $item->id) }}">
                                                     @csrf
                                                     @method('PUT')
                                                     <div class="modal-body">
@@ -96,7 +97,7 @@
 
 
 
-<div class="modal fade bd-example-modal-lg" tabindex="-1" role="dialog" aria-hidden="true">
+<div class="modal fade bd-example-modal-lg" id="createBarangModal" tabindex="-1" role="dialog" aria-hidden="true">
     <div class="modal-dialog modal-lg">
         <div class="modal-content">
             <div class="modal-header">

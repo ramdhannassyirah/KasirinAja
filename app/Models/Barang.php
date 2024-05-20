@@ -8,14 +8,16 @@ use Illuminate\Database\Eloquent\Model;
 class Barang extends Model
 {
     use HasFactory;
-    
+
     protected $table = 'barang';
-    protected $primaryKey = 'id_barang';
+    
 
     protected $fillable = [
-        'id_barang', 'nama_barang', 'harga', 'stok',
+     'nama_barang', 'harga', 'stok',
     ];
 
-
-    
+    public function transaksi()
+    {
+        return $this->hasMany(DetailTransaksi::class, 'id_barang');
+    }
 }

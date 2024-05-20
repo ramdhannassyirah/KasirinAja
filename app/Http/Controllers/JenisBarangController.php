@@ -2,9 +2,7 @@
 
 namespace App\Http\Controllers;
 
-
 use App\Models\JenisBarang;
-
 use Illuminate\Http\Request;
 
 class JenisBarangController extends Controller
@@ -15,7 +13,9 @@ class JenisBarangController extends Controller
     public function index()
     {
         $JenisBarang = JenisBarang::all();
-        return view('admin.JenisBarang.detail', compact('JenisBarang'));
+        $title = 'Jenis Barang';
+
+        return view('admin.JenisBarang.detail', compact('JenisBarang', 'title'));
     }
 
     /**
@@ -23,7 +23,7 @@ class JenisBarangController extends Controller
      */
     public function create()
     {
-        //
+        // Not used
     }
 
     /**
@@ -31,7 +31,15 @@ class JenisBarangController extends Controller
      */
     public function store(Request $request)
     {
-        
+        $request->validate([
+            'nama_jenis' => 'required|string|max:255',
+        ]);
+
+        JenisBarang::create([
+            'nama_jenis' => $request->nama_jenis,
+        ]);
+
+        return redirect()->route('JenisBarang.index')->with('success', 'Jenis Barang created successfully.');
     }
 
     /**
@@ -39,7 +47,7 @@ class JenisBarangController extends Controller
      */
     public function show(string $id)
     {
-        //
+        // Not used
     }
 
     /**
@@ -47,7 +55,7 @@ class JenisBarangController extends Controller
      */
     public function edit(string $id)
     {
-        //
+        // Not used
     }
 
     /**
@@ -55,7 +63,17 @@ class JenisBarangController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+        $jenis = JenisBarang::findOrFail($id);
+
+        $request->validate([
+            'nama_jenis' => 'required|string|max:255',
+        ]);
+
+        $jenis->update([
+            'nama_jenis' => $request->nama_jenis,
+        ]);
+
+        return redirect()->route('JenisBarang.index')->with('success', 'Jenis Barang updated successfully.');
     }
 
     /**
@@ -63,6 +81,9 @@ class JenisBarangController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        $jenis = JenisBarang::findOrFail($id);
+        $jenis->delete();
+
+        return redirect()->route('JenisBarang.index')->with('success', 'Jenis Barang deleted successfully.');
     }
 }

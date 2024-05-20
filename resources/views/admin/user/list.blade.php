@@ -5,12 +5,15 @@
     <div class="row page-titles mx-0">
         <div class="col p-md-0">
             <ol class="breadcrumb">
-                <li class="breadcrumb-item"><a href="javascript:void(0)">Dashboard</a></li>
-                <li class="breadcrumb-item active"><a href="javascript:void(0)">Home</a></li>
+                <li class="breadcrumb-item"><a href="javascript:void(0)">{{$title}}</a></li>
+                <li class="breadcrumb-item active"><a href="javascript:void(0)">{{$title}}</a></li>
             </ol>
         </div>
     </div>
+
+    
     <div class="container-fluid">
+       
         <div class="row">
             <div class="col-12">
                 <div class="card">
@@ -45,7 +48,7 @@
                                                 <form action="{{ route('users.destroy', $user->id) }}" method="POST" style="display:inline;">
                                                     @csrf
                                                     @method('DELETE')
-                                                    <button type="submit" class="btn btn-danger btn-sm">Hapus <i class="fa fa-trash"></i></button>
+                                                    <button type="submit"  class="btn btn-danger btn-sm">Hapus <i class="fa fa-trash"></i></button>
                                                 </form>
                                             </td>
                                         </tr>

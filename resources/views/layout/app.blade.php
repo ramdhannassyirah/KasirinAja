@@ -134,7 +134,7 @@
 
                     @if( Auth::user()->role == 'kasir' )
                     <li>
-                        <a href="{{ route('transaksi') }}" aria-expanded="false">
+                        <a href="{{ route('transaksi.index') }}" aria-expanded="false">
                             <i class="icon-note menu-icon"></i><span class="nav-text">Transaksi</span>
                         </a>
                     </li>

@@ -15,7 +15,8 @@ class BarangController extends Controller
     {
 
        $barang = Barang::all();
-       return view('admin.barang.barang', compact('barang'));
+       $title = 'Barang';
+       return view('admin.barang.barang', compact('barang' , 'title'));
 
     }
 
@@ -82,6 +83,8 @@ class BarangController extends Controller
             'stok' => $request->stok,
 
         ]);
+
+        return redirect()->route('barang.index')->with('success', 'Barang updated successfully.');
     }
 
     /**
