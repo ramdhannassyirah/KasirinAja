@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Models\Barang;
+use App\Models\JenisBarang;
+
 
 use Illuminate\Http\Request;
 
@@ -14,9 +16,10 @@ class BarangController extends Controller
     public function index()
     {
 
-       $barang = Barang::all();
+       $barang = Barang::with('jenisBarang')->get();
+       $jenis = JenisBarang::all();
        $title = 'Barang';
-       return view('admin.barang.barang', compact('barang' , 'title'));
+       return view('admin.barang.barang', compact('barang' , 'title', 'jenis'));
 
     }
 
@@ -25,7 +28,7 @@ class BarangController extends Controller
      */
     public function create()
     {
-        //
+    
     }
 
     /**
@@ -35,6 +38,7 @@ class BarangController extends Controller
     {
         $request->validate([
             'nama_barang' => 'required|string|max:255',
+            'jenis_barang_id' => 'required',
             'harga' => 'required|integer',
             'stok' => 'required|integer',
             
@@ -42,11 +46,12 @@ class BarangController extends Controller
 
         Barang::create([
             'nama_barang' => $request->nama_barang,
+            'jenis_barang_id' => $request->jenis_barang_id,
             'harga' => $request->harga,
             'stok' => $request->stok,
         ]);
 
-        return redirect()->route('barang.index')->with('success', 'User created successfully.');
+        return redirect()->route('barang.index');
     }
 
     /**
@@ -84,7 +89,7 @@ class BarangController extends Controller
 
         ]);
 
-        return redirect()->route('barang.index')->with('success', 'Barang updated successfully.');
+        return redirect()->route('barang.index');
     }
 
     /**
@@ -95,6 +100,6 @@ class BarangController extends Controller
     {
         $barang = Barang::find($id);
         $barang->delete();
-        return redirect()->route('barang.index')->with('success', 'Barang deleted successfully.');
+        return redirect()->route('barang.index');
     }
 }

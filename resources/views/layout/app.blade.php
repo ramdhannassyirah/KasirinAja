@@ -121,12 +121,12 @@
                         
                     <li>
                         <a class="has-arrow" href="javascript:void()" aria-expanded="false">
-                            <i class="icon-notebook menu-icon"></i><span class="nav-text">Data Member</span>
+                            <i class="icon-notebook menu-icon"></i><span class="nav-text">Data Master</span>
                         </a>
                         <ul aria-expanded="false">
                             <li><a href="{{ route('users.index')}}">Data Users</a></li>
                             <li><a href="{{ route('barang.index')}}">Data Barang</a></li>
-                            <li><a href="{{ route('JenisBarang.index')}}">Detail Barang</a></li>
+                            <li><a href="{{ route('JenisBarang.index')}}">Jenis Barang</a></li>
                         </ul>
                     </li>
                     @endif

@@ -36,22 +36,22 @@
                                         <td>{{ $key + 1 }}</td>
                                         <td>{{ $jenis->nama_jenis }}</td>
                                         <td>
-                                            <button type="button" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#editBarangModal{{ $jenis->id_jenis }}">Edit <i class="fa fa-edit"></i></button>
-                                            <form action="{{ route('JenisBarang.destroy', $jenis->id_jenis) }}" method="POST" style="display:inline;">
+                                            <button type="button" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#editBarangModal{{ $jenis->id }}">Edit <i class="fa fa-edit"></i></button>
+                                            <form action="{{ route('JenisBarang.destroy', $jenis->id) }}" method="POST" style="display:inline;">
                                                 @csrf
                                                 @method('DELETE')
                                                 <button type="submit" class="btn btn-danger btn-sm">Hapus <i class="fa fa-trash"></i></button>
                                             </form>
                                         </td>
                                     </tr>
-                                    <div class="modal fade" id="editBarangModal{{ $jenis->id_jenis }}" tabindex="-1" role="dialog" aria-hidden="true">
+                                    <div class="modal fade" id="editBarangModal{{ $jenis->id }}" tabindex="-1" role="dialog" aria-hidden="true">
                                         <div class="modal-dialog modal-lg">
                                             <div class="modal-content">
                                                 <div class="modal-header">
                                                     <h5 class="modal-title">Edit Jenis Barang</h5>
                                                     <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
                                                 </div>
-                                                <form method="POST" action="{{ route('JenisBarang.update', $jenis->id_jenis) }}">
+                                                <form method="POST" action="{{ route('JenisBarang.update', $jenis->id) }}">
                                                     @csrf
                                                     @method('PUT')
                                                     <div class="modal-body">

@@ -40,7 +40,7 @@
                                     <tr>
                                         <td>{{ $key + 1 }}</td>
                                         <td>{{ $item->nama_barang }}</td>
-                                        <td>Makanan</td>
+                                        <td>{{$item->jenisBarang->nama_jenis}}</td>
                                         <td>{{ $item->stok }}</td>
                                         <td>Rp. {{ number_format($item->harga, 0, ',', '.') }}</td>
                                         <td>
@@ -110,6 +110,15 @@
                     <div class="form-group">
                         <label>Nama Barang</label>
                         <input type="text" name="nama_barang" class="form-control input-default" placeholder="Nama Barang">
+                    </div>
+                    <div class="form-group">
+                        <label>Jenis Barang</label>
+                       <select class="form-control" name="jenis_barang_id" id="jenis_barang_id" >
+                        @foreach($jenis as $item)
+                           <option value="" hidden>-- Pilih Jenis --</option>
+                           <option value="{{ $item->id }}">{{ $item->nama_jenis }}</option>
+                        @endforeach
+                       </select>
                     </div>
                     <div class="form-group">
                         <label>Harga Barang</label>

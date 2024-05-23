@@ -12,7 +12,20 @@
     </div>
 <div class="container-fluid">
     <div class="row justify-content-center">
-        <div class="col-3">
+        <div class="col-4">
+            <div class="card card-widget">
+                <div class="card-body gradient-3">
+                    <div class="media">
+                        <span class="card-widget__icon"><i class="icon-home"></i></span>
+                        <div class="media-body">
+                            <h2 class="card-widget__title">520</h2>
+                            <h5 class="card-widget__subtitle">Transaksi Hari ini</h5>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-4">
             <div class="card card-widget">
                 <div class="card-body gradient-3">
                     <div class="media">
@@ -26,7 +39,7 @@
             </div>
         </div>
 
-        <div class="col-3">
+        <div class="col-4">
             <div class="card card-widget">
                 <div class="card-body gradient-4">
                     <div class="media">
@@ -40,26 +53,12 @@
             </div>
         </div>
 
-        <div class="col-3">
-            <div class="card card-widget">
-                <div class="card-body gradient-4">
-                    <div class="media">
-                        <span class="card-widget__icon"><i class="icon-emotsmile"></i></span>
-                        <div class="media-body">
-                            <h2 class="card-widget__title">1002</h2>
-                            <h5 class="card-widget__subtitle">Task Completed</h5>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
 
         <div class="col-12">
             <div class="card card-widget">
                 <div class="card-body gradient-9">
                     <div class="media">
-                        <span class="card-widget__icon"><i class="icon-ghost"></i></span>
-                        <div class="media-body">
+                        <div class="media-body text-center">
                             <h2 class="card-widget__title">420</h2>
                             <h5 class="card-widget__subtitle">Jumlah Pendapatan</h5>
                         </div>

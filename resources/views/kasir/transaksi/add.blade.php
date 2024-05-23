@@ -21,55 +21,55 @@
                         <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#tambahBarang"><i class="fa fa-plus"></i> Tambah Data</button>
                         <hr/>
                         <div class="table-responsive">
-                            <table class="table table-bordered">
+                            <table class="table table-bordered" id="transaksiTable">
                                 <thead>
                                     <tr>
                                         <th>No</th>
                                         <th>Barang</th>
                                         <th>Stock</th>
                                         <th>Harga</th>
-                                        <th>Qyt</th>
+                                        <th>Qty</th>
                                         <th>Subtotal</th>
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <tr>
-                                        <td>No</td>
-                                        <td>Barang</td>
-                                        <td>Stock</td>
-                                        <td>Harga</td>
-                                        <td>Qyt</td>
-                                        <td>Subtotal</td>
-                                    </tr>
-                                    <tr>
-                                        <td colspan="4">Total Bayar</td>
-                                        <td>Total Bayar</td>
-                                    </tr>
+                                    <!-- Rows will be added here dynamically -->
                                 </tbody>
+                                <tfoot>
+                                    <tr>
+                                        <th colspan="4">Total Bayar</th>
+                                        <td colspan="2">
+                                            <input id="totalBayar" type="hidden" value="0" readonly>
+                                            <span id="totalBayarDisplay">0</span>
+                                        </td>
+                                    </tr>
+                                </tfoot>
                             </table>
                         </div>
                         <hr/>
                         <form action="{{ route('transaksi.store') }}" method="POST">
                             @csrf
+                            <input type="hidden" name="id_barang" id="idBarang">
+                            <input type="hidden" name="total_bayar" id="totalBayarAkhir">
                             <div class="row">
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         <label for="no_transaksi">No Transaksi</label>
-                                        <input type="text" name="no_transaksi" class="form-control" placeholder="No. Transaksi" readonly value="NT-001">
+                                        <input type="text" name="no_transaksi" class="form-control" placeholder="No. Transaksi" readonly value="NT-002">
                                     </div>
                                     <div class="form-group">
                                         <label for="tgl_transaksi">Tanggal Transaksi</label>
-                                        <input type="text" name="tgl_transaksi" class="form-control" placeholder="Tanggal Transaksi" readonly value="{{ date('Y-m-d H:i:s') }}">
+                                        <input type="text" name="tgl_transaksi" class="form-control" placeholder="Tanggal Transaksi" readonly value="{{ date('Y-m-d') }}">
                                     </div>
                                 </div>
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         <label for="uang_pembeli">Uang Pembeli</label>
-                                        <input type="text" name="uang_pembeli" class="form-control" placeholder="Uang Pembeli" required>
+                                        <input type="text" name="uang_pembeli" id="uangPembeli" class="form-control" placeholder="Uang Pembeli" required>
                                     </div>
                                     <div class="form-group">
                                         <label for="kembalian">Uang Kembalian</label>
-                                        <input type="text" value="" name="kembalian" class="form-control" placeholder="Uang Kembalian" required readonly>
+                                        <input type="text" value="" id="kembalian" name="kembalian" class="form-control" placeholder="Uang Kembalian" required readonly>
                                     </div>
                                 </div>
                             </div>
@@ -92,21 +92,27 @@
                 <h5 class="modal-title">Tambah Data Barang</h5>
                 <button type="button" class="close" data-dismiss="modal"><span>&times;</span></button>
             </div>
-            <form method="POST" action="{{ route('transaksi.store') }}">
-                @csrf
+            <form id="barangForm">
                 <div class="modal-body">
+                    <select class="form-control" name="id_barang" id="barang-dropdown" required>
+                        <option value="" hidden>--- Pilih Jenis ---</option>
+                        @foreach($barang as $item)
+                        <option value="{{ $item->id }}"  data-stok="{{ $item->stok }}" data-harga="{{ $item->harga }}">{{ $item->nama_barang }}</option>
+                       @endforeach
+                    </select>
+            
                     <div class="form-group">
-                        <label>Jenis Barang</label>
-                        <select class="form-control" name="id_barang" required>
-                            <option value="" hidden>--- Pilih Jenis ---</option>
-                            @foreach($barang as $item)
-                                <option value="{{ $item->id }}">{{ $item->nama_barang }}</option>
-                            @endforeach
-                        </select>
+                        <label>Harga</label>
+                        <input type="number" name="harga" id="hargaInput" class="form-control" placeholder="Harga" readonly>
                     </div>
                     <div class="form-group">
-                        <label>Qyt</label>
-                        <input type="number" name="qyt" class="form-control" placeholder="Qyt" required>
+                        <label>Stok</label>
+                        <input type="number" name="stok" id="stokInput" class="form-control" placeholder="Stok" readonly>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Qty</label>
+                        <input type="number" name="qty" id="qtyInput" class="form-control" placeholder="Qty" required>
                     </div>
                 </div>
                 <div class="modal-footer">
@@ -117,4 +123,79 @@
         </div>
     </div>
 </div>
+
+<script>
+document.addEventListener('DOMContentLoaded', function () {
+    
+    const barangDropdown = document.getElementById('barang-dropdown');
+    const stokInput = document.getElementById('stokInput');
+    const hargaInput = document.getElementById('hargaInput');
+    const qtyInput = document.getElementById('qtyInput');
+    const transaksiTable = document.getElementById('transaksiTable').getElementsByTagName('tbody')[0];
+    const totalBayarInput = document.getElementById('totalBayar');
+    const totalBayarDisplay = document.getElementById('totalBayarDisplay');
+    const uangPembeli = document.getElementById('uangPembeli');
+    const kembalian = document.getElementById('kembalian');
+    const detailsInput = document.getElementById('detailsInput');
+    const idBarang = document.getElementById('idBarang');
+    const totalBayarAkhir = document.getElementById('totalBayarAkhir'); 
+    let total_Bayar = 0;
+    let itemCount = 0;
+    let details = [];
+
+    barangDropdown.addEventListener('change', function () {
+        const selectedOption = barangDropdown.options[barangDropdown.selectedIndex];
+        const stok = selectedOption.getAttribute('data-stok');
+        const harga = selectedOption.getAttribute('data-harga');
+
+        stokInput.value = stok;
+        hargaInput.value = harga;
+    });
+
+    document.getElementById('barangForm').addEventListener('submit', function (e) {
+        e.preventDefault();
+        const selectedOption = barangDropdown.options[barangDropdown.selectedIndex];
+        const id_barang = selectedOption.value;
+        const nama_barang = selectedOption.text;
+        const harga = parseFloat(hargaInput.value);
+        const qty = parseInt(qtyInput.value);
+        const subtotal = harga * qty;
+
+        if (!id_barang || isNaN(harga) || isNaN(qty) || qty <= 0) {
+            alert('Isi semua kolom dengan benar!');
+            return;
+        }
+
+        total_Bayar += subtotal;
+        itemCount++;
+        const row = transaksiTable.insertRow();
+        row.innerHTML = `<td>${itemCount}</td><td>${nama_barang}</td><td>${stokInput.value}</td><td>${harga}</td><td>${qty}</td><td>${subtotal}</td>`;
+        
+        idBarang.value = id_barang;
+        totalBayarInput.value = total_Bayar;
+        totalBayarDisplay.textContent = total_Bayar.toLocaleString('id-ID', {
+        style: 'currency',
+        currency: 'IDR'
+            });
+
+        $('#tambahBarang').modal('hide');
+
+        totalBayarAkhir.value = total_Bayar;
+
+    });
+
+    uangPembeli.addEventListener('input', function () {
+        const uangPembeliValue = parseFloat(uangPembeli.value);
+        const totalBayarValue = parseFloat(totalBayarInput.value);
+        const kembalianValue = uangPembeliValue - totalBayarValue;
+        kembalian.value = kembalianValue;
+
+        if(isNaN(kembalianValue) || uangPembeliValue <= totalBayarValue ) {
+            kembalian.value = 0;
+        }
+
+       
+    });
+});
+</script>
 @endsection

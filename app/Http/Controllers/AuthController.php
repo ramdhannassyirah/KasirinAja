@@ -4,8 +4,6 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-use App\Models\User;
-use Illuminate\Support\Facades\Hash;
 
 class AuthController extends Controller
 {
@@ -34,7 +32,7 @@ class AuthController extends Controller
         ]);
 
         // Get credentials from the request
-        $credentials = $request->only('email', 'password');
+        $credentials = $request->only('email',  'password');
 
         // Attempt to log in the user
         if (Auth::attempt($credentials)) {
@@ -64,7 +62,7 @@ class AuthController extends Controller
         $request->session()->invalidate();
         $request->session()->regenerateToken();
 
-        return redirect('/login');
+        return redirect('/');
     }
 
 }
