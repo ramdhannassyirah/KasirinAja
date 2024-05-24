@@ -36,7 +36,7 @@
                                         <td>{{ $index + 1 }}</td>
                                         <td>{{ $trx->no_transaksi }}</td>
                                         <td>{{ $trx->tgl_transaksi }}</td>
-                                        <td>{{ $trx->total_bayar }}</td>
+                                        <td>Rp. {{number_format( $trx->total_bayar, 0, ',', '.')}}</td>
                                         <td>
                                             <a href="{{ route('transaksi.show', $trx->no_transaksi) }}" class="btn btn-success btn-sm">Detail <i class="fa fa-eye"></i></a>
                                             <form action="" method="POST" style="display:inline;">

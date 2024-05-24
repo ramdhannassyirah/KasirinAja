@@ -10,97 +10,174 @@
             </ol>
         </div>
     </div>
-<div class="container-fluid">
-    <div class="row justify-content-center">
-        <div class="col-4">
-            <div class="card card-widget">
-                <div class="card-body gradient-3">
-                    <div class="media">
-                        <span class="card-widget__icon"><i class="icon-home"></i></span>
-                        <div class="media-body">
-                            <h2 class="card-widget__title">520</h2>
-                            <h5 class="card-widget__subtitle">Transaksi Hari ini</h5>
+
+    @if(Auth::user()->role == 'admin')
+    <div class="container-fluid">
+        <div class="row justify-content-center">
+            <div class="col-4">
+                <div class="card card-widget">
+                    <div class="card-body gradient-3">
+                        <div class="media">
+                            <span class="card-widget__icon"></span>
+                            <div class="media-body text-center">
+                                <h2 class="card-widget__title">{{ $transaksiHariIni }}</h2>
+                                <h5 class="card-widget__subtitle">Transaksi Hari ini</h5>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
-        </div>
-        <div class="col-4">
-            <div class="card card-widget">
-                <div class="card-body gradient-3">
-                    <div class="media">
-                        <span class="card-widget__icon"><i class="icon-home"></i></span>
-                        <div class="media-body">
-                            <h2 class="card-widget__title">520</h2>
-                            <h5 class="card-widget__subtitle">Data Barang</h5>
+            <div class="col-4">
+                <div class="card card-widget">
+                    <div class="card-body gradient-3">
+                        <div class="media">
+                            <span class="card-widget__icon"></span>
+                            <div class="media-body text-center">
+                                <h2 class="card-widget__title">{{ $dataBarang }}</h2>
+                                <h5 class="card-widget__subtitle">Data Barang</h5>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-4">
+                <div class="card card-widget">
+                    <div class="card-body gradient-4">
+                        <div class="media">
+                            <span class="card-widget__icon"></span>
+                            <div class="media-body text-center">
+                                <h2 class="card-widget__title">{{ $dataTransaksi }}</h2>
+                                <h5 class="card-widget__subtitle">Data Transaksi</h5>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-12">
+                <div class="card card-widget">
+                    <div class="card-body gradient-9">
+                        <div class="media">
+                            <div class="media-body text-center">
+                                <h2 class="card-widget__title">Rp. {{ number_format($jumlahPendapatan, 0, ',', '.') }}</h2>
+                                <h5 class="card-widget__subtitle">Jumlah Pendapatan</h5>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
 
-        <div class="col-4">
-            <div class="card card-widget">
-                <div class="card-body gradient-4">
-                    <div class="media">
-                        <span class="card-widget__icon"><i class="icon-tag"></i></span>
-                        <div class="media-body">
-                            <h2 class="card-widget__title">720</h2>
-                            <h5 class="card-widget__subtitle">Data Transaksi</h5>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-
-        <div class="col-12">
-            <div class="card card-widget">
-                <div class="card-body gradient-9">
-                    <div class="media">
-                        <div class="media-body text-center">
-                            <h2 class="card-widget__title">420</h2>
-                            <h5 class="card-widget__subtitle">Jumlah Pendapatan</h5>
+        <div class="row">
+            <div class="col-12">
+                <div class="card">
+                    <div class="card-body">
+                        <h4 class="card-title">Data Barang dengan Stok Kurang dari 10</h4>
+                        <div class="table-responsive">
+                            <table class="table table-striped table-bordered zero-configuration">
+                                <thead>
+                                    <tr>
+                                        <th>No</th>
+                                        <th>Nama Barang</th>
+                                        <th>Jenis Barang</th>
+                                        <th>Stok</th>
+                                        <th>Harga</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @foreach ($barang as $item)
+                                    @if ($item->stok <= 10)
+                                    <tr>
+                                        <td>{{ $loop->iteration }}</td>
+                                        <td>{{ $item->nama_barang }}</td>
+                                        <td>{{ $item->jenisBarang->nama_jenis }}</td>
+                                        <td>{{ $item->stok }}</td>
+                                        <td>Rp. {{ number_format($item->harga, 0, ',', '.') }}</td>
+                                    </tr>
+                                    @endif
+                                    @endforeach
+                                </tbody>
+                            </table>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
+    @endif
+
+    @if(Auth::user()->role == 'kasir')
+    <div class="container-fluid">
+        <div class="row justify-content-center">
+            <div class="col-4">
+                <div class="card card-widget">
+                    <div class="card-body gradient-3">
+                        <div class="media">
+                            <span class="card-widget__icon"></span>
+                            <div class="media-body text-center">
+                                <h2 class="card-widget__title">{{ $transaksiHariIni }}</h2>
+                                <h5 class="card-widget__subtitle">Transaksi Hari ini</h5>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-4">
+                <div class="card card-widget">
+                    <div class="card-body gradient-9">
+                        <div class="media">
+                            <span class="card-widget__icon"></span>
+                            <div class="media-body text-center">
+                                <h2 class="card-widget__title">Rp. {{ number_format($jumlahPendapatan, 0, ',', '.') }}</h2>
+                                <h5 class="card-widget__subtitle">Jumlah Pendapatan</h5>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+   
+
     <div class="row">
         <div class="col-12">
             <div class="card">
                 <div class="card-body">
-                    <h4 class="card-title">Data Table</h4>
+                    <h4 class="card-title">Data Barang dengan Stok Kurang dari 10</h4>
                     <div class="table-responsive">
                         <table class="table table-striped table-bordered zero-configuration">
                             <thead>
                                 <tr>
                                     <th>No</th>
-                                    <th>Name Barang</th>
+                                    <th>Nama Barang</th>
                                     <th>Jenis Barang</th>
                                     <th>Stok</th>
                                     <th>Harga</th>
                                 </tr>
                             </thead>
                             <tbody>
+                                @foreach ($barang as $item)
+                                @if ($item->stok <= 10)
                                 <tr>
-                                    <td>1</td>
-                                    <td>Admin</td>
-                                    <td>admin@gmail.com</td>
-                                    <td>admin</td>
-                                    <td>
-                                       Rp.20,000
-                                    </td>
+                                    <td>{{ $loop->iteration }}</td>
+                                    <td>{{ $item->nama_barang }}</td>
+                                    <td>{{ $item->jenisBarang->nama_jenis }}</td>
+                                    <td>{{ $item->stok }}</td>
+                                    <td>Rp. {{ number_format($item->harga, 0, ',', '.') }}</td>
                                 </tr>
+                                @endif
+                                @endforeach
                             </tbody>
                         </table>
                     </div>
                 </div>
             </div>
-           
-        </div>
         </div>
     </div>
+</div>
+@endif
+
 </div>
 @endsection
