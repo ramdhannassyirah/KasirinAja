@@ -15,7 +15,7 @@ class JenisBarang extends Model
 
 
     protected $fillable = [
-        'jenis','id',
+        'nama_jenis','id',
     ];
 
     public function barang()

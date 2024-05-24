@@ -12,16 +12,16 @@ class DetailTransaksi extends Model
     protected $table = 'detail_transaksi';
 
     protected $fillable = [
-        'id_barang', 'transaksi_id', 'qty', 'subtotal',
+        'barang_id', 'transaksi_id', 'qty', 'subtotal',
     ];
 
-   public function transaksi()
+    public function transaksi()
     {
-        return $this->hasMany(Transaksi::class);
+        return $this->belongsTo(Transaksi::class);
     }
 
     public function barang()
     {
-        return $this->hasMany(Barang::class);
+        return $this->belongsTo(Barang::class);
     }
 }

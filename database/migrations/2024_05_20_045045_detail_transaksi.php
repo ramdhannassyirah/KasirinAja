@@ -10,11 +10,14 @@ return new class extends Migration
     {
         Schema::create('detail_transaksi', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('transaksi_id');
-            $table->foreignId('id_barang');
+            $table->unsignedBigInteger('transaksi_id');
+            $table->unsignedBigInteger('barang_id');
             $table->integer('qty');
-            $table->integer('subtotal');
+            $table->decimal('subtotal', 15, 2);
             $table->timestamps();
+
+            $table->foreign('transaksi_id')->references('id')->on('transaksi')->onDelete('cascade');
+            $table->foreign('barang_id')->references('id')->on('barang')->onDelete('cascade');
         });
     }
 

@@ -12,15 +12,13 @@ class Transaksi extends Model
     use HasFactory;
 
     protected $table = 'transaksi';
- 
 
     protected $fillable = [
         'no_transaksi',
-        'id_barang',
         'tgl_transaksi',
         'total_bayar',
         'kembalian',
-        'uang_pembeli'
+        'uang_pembeli',
     ];
 
     public function detailTransaksi()
@@ -32,5 +30,4 @@ class Transaksi extends Model
     {
         return $this->belongsTo(Barang::class);
     }
-    
 }

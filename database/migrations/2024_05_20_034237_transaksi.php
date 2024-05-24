@@ -12,13 +12,12 @@ return new class extends Migration
     public function up()
     {
         Schema::create('transaksi', function (Blueprint $table) {
-            $table->bigIncrements('id');
-            $table->string('no_transaksi')->unique();
-            $table->unsignedBigInteger('id_barang');
+            $table->id();
+            $table->string('no_transaksi');
             $table->date('tgl_transaksi');
-            $table->integer('total_bayar');
-            $table->integer('kembalian');
-            $table->integer('uang_pembeli');
+            $table->decimal('total_bayar', 15, 2);
+            $table->decimal('uang_pembeli', 15, 2);
+            $table->decimal('kembalian', 15, 2);
             $table->timestamps();
         });
     }

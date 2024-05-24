@@ -16,7 +16,6 @@ Route::resource('users', UserController::class)->middleware('auth');
 Route::resource('barang',BarangController::class)->middleware('auth');
 Route::resource('JenisBarang',JenisBarangController::class)->middleware('auth');
 Route::resource('transaksi', TransaksiController::class)->middleware('auth');
-Route::resource('detailtransaksi', DetailTransaksiController::class)->middleware('auth');
 
 
 Route::get('/dashboard', function () { return view('dashboard');})->middleware(['auth'])->name('dashboard');

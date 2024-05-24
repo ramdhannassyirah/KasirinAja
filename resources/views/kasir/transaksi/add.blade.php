@@ -47,10 +47,11 @@
                             </table>
                         </div>
                         <hr/>
-                        <form action="{{ route('transaksi.store') }}" method="POST">
+                        <form action="{{ route('transaksi.store') }}" method="POST" id="transaksiForm">
                             @csrf
                             <input type="hidden" name="id_barang" id="idBarang">
                             <input type="hidden" name="total_bayar" id="totalBayarAkhir">
+                            <input type="hidden" name="details" id="detailsInput">
                             <div class="row">
                                 <div class="col-md-6">
                                     <div class="form-group">
@@ -126,7 +127,6 @@
 
 <script>
 document.addEventListener('DOMContentLoaded', function () {
-    
     const barangDropdown = document.getElementById('barang-dropdown');
     const stokInput = document.getElementById('stokInput');
     const hargaInput = document.getElementById('hargaInput');
@@ -170,31 +170,32 @@ document.addEventListener('DOMContentLoaded', function () {
         itemCount++;
         const row = transaksiTable.insertRow();
         row.innerHTML = `<td>${itemCount}</td><td>${nama_barang}</td><td>${stokInput.value}</td><td>${harga}</td><td>${qty}</td><td>${subtotal}</td>`;
+
+        details.push({
+            id_barang: id_barang,
+            qty: qty,
+            subtotal: subtotal
+        });
         
         idBarang.value = id_barang;
         totalBayarInput.value = total_Bayar;
         totalBayarDisplay.textContent = total_Bayar.toLocaleString('id-ID', {
-        style: 'currency',
-        currency: 'IDR'
-            });
+            style: 'currency',
+            currency: 'IDR'
+        });
+
+        detailsInput.value = JSON.stringify(details);
 
         $('#tambahBarang').modal('hide');
 
         totalBayarAkhir.value = total_Bayar;
-
     });
 
     uangPembeli.addEventListener('input', function () {
         const uangPembeliValue = parseFloat(uangPembeli.value);
-        const totalBayarValue = parseFloat(totalBayarInput.value);
-        const kembalianValue = uangPembeliValue - totalBayarValue;
-        kembalian.value = kembalianValue;
+        const kembalianValue = uangPembeliValue - total_Bayar;
 
-        if(isNaN(kembalianValue) || uangPembeliValue <= totalBayarValue ) {
-            kembalian.value = 0;
-        }
-
-       
+        kembalian.value = isNaN(kembalianValue) ? '' : kembalianValue;
     });
 });
 </script>
