@@ -47,16 +47,15 @@
                             </table>
                         </div>
                         <hr/>
-                        <form action="{{ route('transaksi.store') }}" method="POST" id="transaksiForm">
+                        <form action="{{ route('transaksi.store') }}" method="POST">
                             @csrf
-                            <input type="hidden" name="id_barang" id="idBarang">
-                            <input type="hidden" name="total_bayar" id="totalBayarAkhir">
                             <input type="hidden" name="details" id="detailsInput">
+                            <input type="hidden" name="total_bayar" id="totalBayarAkhir">
                             <div class="row">
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         <label for="no_transaksi">No Transaksi</label>
-                                        <input type="text" name="no_transaksi" class="form-control" placeholder="No. Transaksi" readonly value="NT-002">
+                                        <input type="text" name="no_transaksi" class="form-control" placeholder="No. Transaksi" readonly value="NT-00{{ time() }}">
                                     </div>
                                     <div class="form-group">
                                         <label for="tgl_transaksi">Tanggal Transaksi</label>
@@ -98,22 +97,22 @@
                     <select class="form-control" name="id_barang" id="barang-dropdown" required>
                         <option value="" hidden>--- Pilih Jenis ---</option>
                         @foreach($barang as $item)
-                        <option value="{{ $item->id }}"  data-stok="{{ $item->stok }}" data-harga="{{ $item->harga }}">{{ $item->nama_barang }}</option>
+                        <option value="{{ $item->id }}" data-stok="{{ $item->stok }}" data-harga="{{ $item->harga }}">{{ $item->nama_barang }}</option>
                        @endforeach
                     </select>
             
                     <div class="form-group">
                         <label>Harga</label>
-                        <input type="number" name="harga" id="hargaInput" class="form-control" placeholder="Harga" readonly>
+                        <input type="number" id="hargaInput" class="form-control" placeholder="Harga" readonly>
                     </div>
                     <div class="form-group">
                         <label>Stok</label>
-                        <input type="number" name="stok" id="stokInput" class="form-control" placeholder="Stok" readonly>
+                        <input type="number" id="stokInput" class="form-control" placeholder="Stok" readonly>
                     </div>
 
                     <div class="form-group">
                         <label>Qty</label>
-                        <input type="number" name="qty" id="qtyInput" class="form-control" placeholder="Qty" required>
+                        <input type="number" id="qtyInput" class="form-control" placeholder="Qty" required>
                     </div>
                 </div>
                 <div class="modal-footer">
@@ -127,6 +126,7 @@
 
 <script>
 document.addEventListener('DOMContentLoaded', function () {
+    
     const barangDropdown = document.getElementById('barang-dropdown');
     const stokInput = document.getElementById('stokInput');
     const hargaInput = document.getElementById('hargaInput');
@@ -137,7 +137,6 @@ document.addEventListener('DOMContentLoaded', function () {
     const uangPembeli = document.getElementById('uangPembeli');
     const kembalian = document.getElementById('kembalian');
     const detailsInput = document.getElementById('detailsInput');
-    const idBarang = document.getElementById('idBarang');
     const totalBayarAkhir = document.getElementById('totalBayarAkhir'); 
     let total_Bayar = 0;
     let itemCount = 0;
@@ -171,17 +170,17 @@ document.addEventListener('DOMContentLoaded', function () {
         const row = transaksiTable.insertRow();
         row.innerHTML = `<td>${itemCount}</td><td>${nama_barang}</td><td>${stokInput.value}</td><td>${harga}</td><td>${qty}</td><td>${subtotal}</td>`;
 
-        details.push({
-            id_barang: id_barang,
-            qty: qty,
-            subtotal: subtotal
-        });
-        
-        idBarang.value = id_barang;
         totalBayarInput.value = total_Bayar;
         totalBayarDisplay.textContent = total_Bayar.toLocaleString('id-ID', {
             style: 'currency',
             currency: 'IDR'
+        });
+
+        // Add detail to details array
+        details.push({
+            id_barang: id_barang,
+            qty: qty,
+            subtotal: subtotal
         });
 
         detailsInput.value = JSON.stringify(details);
@@ -189,13 +188,18 @@ document.addEventListener('DOMContentLoaded', function () {
         $('#tambahBarang').modal('hide');
 
         totalBayarAkhir.value = total_Bayar;
+
     });
 
     uangPembeli.addEventListener('input', function () {
         const uangPembeliValue = parseFloat(uangPembeli.value);
-        const kembalianValue = uangPembeliValue - total_Bayar;
+        const totalBayarValue = parseFloat(totalBayarInput.value);
+        const kembalianValue = uangPembeliValue - totalBayarValue;
+        kembalian.value = kembalianValue;
 
-        kembalian.value = isNaN(kembalianValue) ? '' : kembalianValue;
+        if(isNaN(kembalianValue) || uangPembeliValue < totalBayarValue ) {
+            kembalian.value = 0;
+        }
     });
 });
 </script>
