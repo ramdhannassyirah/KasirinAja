@@ -45,10 +45,10 @@
                                             <td>{{ $user->role }}</td>
                                             <td>
                                                 <button type="button" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#editUserModal{{ $user->id }}">Edit <i class="fa fa-edit"></i> </button>
-                                                <form action="{{ route('users.destroy', $user->id) }}" method="POST" style="display:inline;">
+                                                <form id="delete-formUser-{{ $user->id }}" action="{{ route('users.destroy', $user->id) }}" method="POST" style="display:inline;">
                                                     @csrf
                                                     @method('DELETE')
-                                                    <button type="submit"  class="btn btn-danger btn-sm">Hapus <i class="fa fa-trash"></i></button>
+                                                    <button type="button" onclick="confirmDeleteUser({{ $user->id }})"  class="btn btn-danger btn-sm">Hapus <i class="fa fa-trash"></i></button>
                                                 </form>
                                             </td>
                                         </tr>
@@ -146,4 +146,7 @@
         </div>
     </div>
 </div>
+
+
+<script src="{{ asset('/assets/js/alert.js') }}"></script>
 @endsection

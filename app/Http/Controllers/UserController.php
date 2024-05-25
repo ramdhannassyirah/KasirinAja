@@ -40,17 +40,20 @@ class UserController extends Controller
 
         $request->validate([
             'name' => 'required|string|max:255',
-            'email' => 'required|string|email|max:255|unique:users,email,'.$user->id,
-            'password' => 'nullable|string|min:8',
+            'email' => 'required|string|email',
+            'password' => 'nullable|',
             'role' => 'required|in:admin,kasir',
         ]);
 
         $user->name = $request->name;
         $user->email = $request->email;
+
+
         if ($request->password) {
             $user->password = Hash::make($request->password);
         }
         $user->role = $request->role;
+        
         $user->save();
 
         return redirect()->route('users.index');

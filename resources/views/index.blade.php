@@ -33,7 +33,7 @@
                                     <div class="form-group">
                                         <input type="password" name="password" class="form-control" placeholder="Password" required>
                                     </div>
-                                    <button type="submit" class="btn login-form__btn submit w-100">Sign In</button>
+                                    <button type="submit" class="btn  login-form__btn submit w-100">Sign In</button>
                                 </form>
                                 {{-- <p class="mt-5 login-form__footer">Don't have an account? <a href="{{ route('register') }}" class="text-primary">Sign Up</a> now</p> --}}
                             </div>
@@ -43,6 +43,8 @@
             </div>
         </div>
     </div>
+
+
     <!--**********************************
         Scripts
     ***********************************-->
@@ -51,5 +53,6 @@
     <script src="/assets/js/settings.js"></script>
     <script src="/assets/js/gleek.js"></script>
     <script src="/assets/js/styleSwitcher.js"></script>
+    
 </body>
 </html>

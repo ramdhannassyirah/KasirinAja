@@ -130,7 +130,7 @@
                         <div class="media">
                             <span class="card-widget__icon"></span>
                             <div class="media-body text-center">
-                                <h2 class="card-widget__title">Rp. {{ number_format($jumlahPendapatan, 0, ',', '.') }}</h2>
+                                <h2 class="card-widget__title">Rp.{{ number_format($jumlahPendapatan, 0, ',', '.') }}</h2>
                                 <h5 class="card-widget__subtitle">Jumlah Pendapatan</h5>
                             </div>
                         </div>
@@ -165,7 +165,7 @@
                                     <td>{{ $item->nama_barang }}</td>
                                     <td>{{ $item->jenisBarang->nama_jenis }}</td>
                                     <td>{{ $item->stok }}</td>
-                                    <td>Rp. {{ number_format($item->harga, 0, ',', '.') }}</td>
+                                    <td>Rp. {{number_format($item->harga, 0, ',', '.') }}</td>
                                 </tr>
                                 @endif
                                 @endforeach

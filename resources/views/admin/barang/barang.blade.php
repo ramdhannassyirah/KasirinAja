@@ -45,10 +45,10 @@
                                         <td>Rp. {{ number_format($item->harga, 0, ',', '.') }}</td>
                                         <td>
                                             <button type="button" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#editUserModal{{ $item->id }}">Edit <i class="fa fa-edit"></i></button>
-                                            <form action="{{ route('barang.destroy', $item->id) }}" method="POST" style="display:inline;">
+                                            <form id="delete-form-{{ $item->id }}"  action="{{ route('barang.destroy', $item->id) }}" method="POST" style="display:inline;">
                                                 @csrf
                                                 @method('DELETE')
-                                                <button type="submit" class="btn btn-danger btn-sm">Hapus <i class="fa fa-trash"></i></button>
+                                                <button type="button" class="btn btn-danger btn-sm" onclick="confirmDelete({{ $item->id }})">Hapus <i class="fa fa-trash"></i></button>
                                             </form>
                                         </td>
                                     </tr>
@@ -137,4 +137,7 @@
         </div>
     </div>
 </div>
+
+<script src="{{ asset('/assets/js/alert.js') }}"></script>
+
 @endsection

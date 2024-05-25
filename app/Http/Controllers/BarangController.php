@@ -67,7 +67,7 @@ class BarangController extends Controller
      */
     public function edit(string $id)
     {
-        //
+
     }
 
     /**
@@ -78,8 +78,8 @@ class BarangController extends Controller
         $barang = Barang::find($id);
         $request->validate([
             'nama_barang' => 'required|string|max:255',
-            'harga' => 'required|integer',
-            'stok' => 'required|integer',
+            'harga' => 'required',
+            'stok' => 'required',
         ]);
 
         $barang->update([
@@ -89,7 +89,9 @@ class BarangController extends Controller
 
         ]);
 
-        return redirect()->route('barang.index');
+        $barang->save();
+
+        return redirect()->route('barang.index')->with('success', 'Barang updated successfully');
     }
 
     /**

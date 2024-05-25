@@ -177,7 +177,7 @@ document.addEventListener('DOMContentLoaded', function () {
             currency: 'IDR'
         });
 
-        // Add detail to details array
+        
         details.push({
             id_barang: id_barang,
             qty: qty,

@@ -11,6 +11,7 @@
     <!-- Custom Stylesheet -->
     <link href="/assets/plugins/tables/css/datatable/dataTables.bootstrap4.min.css" rel="stylesheet">
     <link href="/assets/css/style.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
 
 </head>
 
@@ -164,6 +165,8 @@
         Main wrapper end
     ***********************************-->
 
+   
+
     <!--**********************************
         Scripts
     ***********************************-->
@@ -176,6 +179,8 @@
     <script src="/assets/plugins/tables/js/jquery.dataTables.min.js"></script>
     <script src="/assets/plugins/tables/js/datatable/dataTables.bootstrap4.min.js"></script>
     <script src="/assets/plugins/tables/js/datatable-init/datatable-basic.min.js"></script>
+
+
 
 </body>
 
