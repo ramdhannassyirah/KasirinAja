@@ -3,6 +3,45 @@
 
 <head>
     <title>Cetak Transaksi</title>
+    <style>
+        /* Define CSS styles */
+        body {
+            font-family: Arial, sans-serif;
+        }
+
+        .form-group {
+            margin: auto;
+            width: 80%;
+            text-align: center;
+        }
+
+        h1 {
+            margin-bottom: 20px;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 20px;
+        }
+
+        th,
+        td {
+            border: 1px solid #ccc;
+            padding: 10px; /* Add padding to create spacing */
+            text-align: center;
+        }
+
+        th {
+            background-color: #f2f2f2;
+        }
+
+        .total-row td {
+            border: none;
+            padding-top: 10px;
+            font-weight: bold;
+        }
+    </style>
 </head>
 
 <body>
@@ -29,13 +68,14 @@
         </thead>
         <tbody>
            @foreach($transaksi->detailTransaksi as $detail)
-               <tr>
-                   <td>{{ $loop->iteration }}</td>
-                   <td>{{ $detail->barang->nama_barang }}</td>
-                   <td>Rp. {{ number_format($detail->barang->harga, 0, ',', '.') }}</td>
-                   <td>{{ $detail->qty }}</td>
-                   <td>Rp. {{ number_format($detail->subtotal, 0, ',', '.') }}</td>
-            @endforeach
+           <tr align="center">
+               <td>{{ $loop->iteration }}</td>
+               <td>{{ $detail->barang->nama_barang }}</td>
+               <td>{{ number_format($detail->barang->harga, 0, ',', '.') }}</td>
+               <td>{{ $detail->qty }}</td>
+               <td>{{ number_format($detail->subtotal, 0, ',', '.') }}</td>
+           </tr>
+           @endforeach
         </tbody>
         <tfoot>
             <tr align="center" class="total-row">
@@ -48,6 +88,10 @@
        <p>Transaction not found.</p>
    @endif
 </div>
+
+<script type="text/javascript">
+    window.print();
+</script>
 
 </body>
 </html>

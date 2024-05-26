@@ -21,7 +21,7 @@ class TransaksiController extends Controller
     public function cetakTransaksi($no_transaksi){
         $transaksi = Transaksi::with('barang', 'detailTransaksi')->where('no_transaksi', $no_transaksi)->first();
         $barang = Barang::with('detailTransaksi')->get();
-        $detailTransaksi = DetailTransaksi::with('barang', 'transaksi')->where('transaksi_id', $transaksi->id)->get();
+        $detailTransaksi = DetailTransaksi::with('barang', 'transaksi')->where('transaksi_id', $no_transaksi)->get();
         return view('kasir.transaksi.cetak', compact('transaksi', 'detailTransaksi','barang'));
     }
     
