@@ -39,7 +39,7 @@
                                         <td>{{ $trx->tgl_transaksi }}</td>
                                         <td>Rp. {{number_format( $trx->total_bayar, 0, ',', '.')}}</td>
                                         <td>
-                                            <a href="{{ route('transaksi.show', $trx->no_transaksi) }}" class="btn btn-success btn-sm">Detail <i class="fa fa-eye"></i></a>
+                                            <a href="{{ route('cetakTransaksi', $trx->no_transaksi) }}" class="btn btn-success btn-sm" target="_blank" >Detail <i class="fa fa-eye"></i></a>
                                             <form action="" method="POST" style="display:inline;">
                                                 @csrf
                                                 @method('DELETE')

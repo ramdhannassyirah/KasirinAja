@@ -10,11 +10,11 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', [AuthController::class, 'index'])->name('login');
 Route::post('/', [AuthController::class, 'login']);
-Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
-
+Route::get('/logout', [AuthController::class, 'logout'])->name('logout');
 Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
+Route::get('/cetakTransaksi/{no_transaksi}', [TransaksiController::class, 'cetakTransaksi'])->name('cetakTransaksi');
 
-Route::resource('users', UserController::class)->middleware('auth');
-Route::resource('barang',BarangController::class)->middleware('auth');
-Route::resource('JenisBarang',JenisBarangController::class)->middleware('auth');
-Route::resource('transaksi', TransaksiController::class)->middleware('auth');
+Route::resource('users', UserController::class);
+Route::resource('barang',BarangController::class);
+Route::resource('JenisBarang',JenisBarangController::class);
+Route::resource('transaksi', TransaksiController::class);

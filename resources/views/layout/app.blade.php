@@ -42,11 +42,11 @@
         ***********************************-->
         <div class="nav-header">
             <div class="brand-logo">
-                <a href="index.html">
+                <a href="">
                     <b class="logo-abbr"><img src="/assets/images/logo.png" alt=""> </b>
                     <span class="logo-compact"><img src="/assets/images/logo-compact.png" alt=""></span>
                     <span class="brand-title">
-                        <img src="/assets/images/logo-text.png" alt="">
+                        <p class="brand-text text-white text-uppercase fw-bold">Kasirin Aja</p>
                     </span>
                 </a>
             </div>
@@ -85,13 +85,10 @@
                                         <hr class="my-2">
                                       
                                         <li>
-                                            <a href="{{ route('logout') }}"
-                                               onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
+                                            <a href="{{ route('logout') }}">
                                                 <i class="icon-key"></i> <span>Logout</span>
                                             </a>
-                                            <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
-                                                @csrf
-                                            </form>
+                                           
                                         </li>
                                     </ul>
                                 </div>

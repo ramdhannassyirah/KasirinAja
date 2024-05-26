@@ -18,6 +18,14 @@ class TransaksiController extends Controller
         return view('kasir.transaksi.list', compact('transaksi', 'barang'));
     }
 
+    public function cetakTransaksi($no_transaksi){
+        $transaksi = Transaksi::with('barang', 'detailTransaksi')->where('no_transaksi', $no_transaksi)->first();
+        $barang = Barang::with('detailTransaksi')->get();
+        $detailTransaksi = DetailTransaksi::with('barang', 'transaksi')->where('transaksi_id', $transaksi->id)->get();
+        return view('kasir.transaksi.cetak', compact('transaksi', 'detailTransaksi','barang'));
+    }
+    
+
     public function create()
     {
         $barang = Barang::all();
