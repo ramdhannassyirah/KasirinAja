@@ -16,8 +16,8 @@ return new class extends Migration
             $table->decimal('subtotal', 15, 2);
             $table->timestamps();
 
-            $table->foreign('transaksi_id')->references('id')->on('transaksi')->onDelete('cascade');
-            $table->foreign('barang_id')->references('id')->on('barang')->onDelete('cascade');
+            $table->foreign('transaksi_id')->references('id')->on('transaksi');
+            $table->foreign('barang_id')->references('id')->on('barang');
         });
     }
 
