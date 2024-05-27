@@ -19,8 +19,7 @@ class BarangController extends Controller
        $barang = Barang::with('jenisBarang')->get();
        $jenis = JenisBarang::all();
        $title = 'Barang';
-       return view('admin.barang.barang', compact('barang' , 'title', 'jenis'));
-
+        return view('admin.barang.barang', compact('barang' , 'title', 'jenis'));
     }
 
     /**
