@@ -3,7 +3,7 @@ Ramdhan Nassyirah <br>
 Group 6 - 189 <br>
 Website Kasir Sederhana 
 
-Laravel Kasirin Aja
+Laravel Kasirin Aja <br>
 Web app untuk mengelola Transaksi Jual Beli Barang.
 
 # Features / Fitur <br>
@@ -33,6 +33,11 @@ Web app untuk mengelola Transaksi Jual Beli Barang.
   ~ Mencetak Transaksi <br>
 
 # Login
+
+Untuk login aplikasi silakan masukkan Admin dan Password berikut :
+
+Admin : admin@gmail.com <br>
+Password : admin <br>
 
 
 
