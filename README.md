@@ -25,7 +25,6 @@ Features / Fitur <br>
   ~ Menambahkan Jenis Barang <br>
   ~ Mengedit Jenis Barang <br>
   ~ Menghapus Jenis Barang <br>
-<br>
 - Menu Kasir <br>
   ~ Transaksi <br>
 - Menu Transaksi <br>
