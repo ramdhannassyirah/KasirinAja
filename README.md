@@ -36,9 +36,12 @@ Web app untuk mengelola Transaksi Jual Beli Barang.
 
 Untuk login aplikasi silakan masukkan Email dan Password berikut :
 
+- Admin
 Email : admin@gmail.com <br>
 Password : admin <br>
-
+- Kasir 
+Email : kasir@gmail.com <br>
+Password : kasir <br>
 
 
   
