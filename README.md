@@ -34,9 +34,9 @@ Web app untuk mengelola Transaksi Jual Beli Barang.
 
 # Login
 
-Untuk login aplikasi silakan masukkan Admin dan Password berikut :
+Untuk login aplikasi silakan masukkan Email dan Password berikut :
 
-Admin : admin@gmail.com <br>
+Email : admin@gmail.com <br>
 Password : admin <br>
 
 
