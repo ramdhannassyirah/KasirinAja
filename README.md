@@ -6,7 +6,7 @@ Website Kasir Sederhana
 Laravel Kasirin Aja
 Web app untuk mengelola Transaksi Jual Beli Barang.
 
-#Features / Fitur <br>
+# Features / Fitur <br>
 - Autentikasi/login-logout <br>
 - Level hak akses (admin, kasir) <br>
 - Menu Admin <br>
@@ -32,7 +32,7 @@ Web app untuk mengelola Transaksi Jual Beli Barang.
   ~ Menghitung Uang Transaksi <br>
   ~ Mencetak Transaksi <br>
 
-#Login
+# Login
 
 
 
