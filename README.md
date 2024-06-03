@@ -3,35 +3,35 @@ Ramdhan Nassyirah <br>
 Group 6 - 189 <br>
 Website Kasir Sederhana 
 
-Laravel Surat Menyurat v1
-Web app untuk mengelola surat masuk, keluar, serta disposisinya.
+Laravel Kasirin Aja
+Web app untuk mengelola Transaksi Jual Beli Barang.
 
-Features / Fitur
-- Autentikasi/login-logout
-- Level hak akses (admin, kasir)
-- Menu Admin
-  ~ Data User
-  ~ Data Barang
-  ~ Data Jenis Barang
-- Menu Data User
-  ~ Menambahkan User
-  ~ Mengedit User 
-  ~ Menghapus User 
-- Menu Data Barang
-  ~ Menambahkan Barang
-  ~ Mengedit Barang 
-  ~ Menghapus Barang
-- Menu Data Jenis Barang
-  ~ Menambahkan Jenis Barang
-  ~ Mengedit Jenis Barang
-  ~ Menghapus Jenis Barang
-
-- Menu Kasir
-  ~ Transaksi
-- Menu Transaksi
-  ~ Menambahkan Transaksi
-  ~ Menghitung Uang Transaksi
-  ~ Mencetak Transaksi
+Features / Fitur <br>
+- Autentikasi/login-logout <br>
+- Level hak akses (admin, kasir) <br>
+- Menu Admin <br>
+  ~ Data User <br>
+  ~ Data Barang <br>
+  ~ Data Jenis Barang <br>
+- Menu Data User <br>
+  ~ Menambahkan User <br>
+  ~ Mengedit User <br>
+  ~ Menghapus User <br>
+- Menu Data Barang <br>
+  ~ Menambahkan Barang <br>
+  ~ Mengedit Barang  <br>
+  ~ Menghapus Barang <br>
+- Menu Data Jenis Barang <br>
+  ~ Menambahkan Jenis Barang <br>
+  ~ Mengedit Jenis Barang <br>
+  ~ Menghapus Jenis Barang <br>
+<br>
+- Menu Kasir <br>
+  ~ Transaksi <br>
+- Menu Transaksi <br>
+  ~ Menambahkan Transaksi <br>
+  ~ Menghitung Uang Transaksi <br>
+  ~ Mencetak Transaksi <br>
 
   
 
