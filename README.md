@@ -1,48 +1,85 @@
-Kasirin Aja <br>
 Ramdhan Nassyirah <br>
 Group 6 - 189 <br>
-Website Kasir Sederhana 
 
-Laravel Kasirin Aja <br>
-Web app untuk mengelola Transaksi Jual Beli Barang.
+# 🛒 Kasirin Aja - POS System
 
-# Features / Fitur <br>
-- Autentikasi/login-logout <br>
-- Level hak akses (admin, kasir) <br>
-- Menu Admin <br>
-  ~ Data User <br>
-  ~ Data Barang <br>
-  ~ Data Jenis Barang <br>
-- Menu Data User <br>
-  ~ Menambahkan User <br>
-  ~ Mengedit User <br>
-  ~ Menghapus User <br>
-- Menu Data Barang <br>
-  ~ Menambahkan Barang <br>
-  ~ Mengedit Barang  <br>
-  ~ Menghapus Barang <br>
-- Menu Data Jenis Barang <br>
-  ~ Menambahkan Jenis Barang <br>
-  ~ Mengedit Jenis Barang <br>
-  ~ Menghapus Jenis Barang <br>
-- Menu Kasir <br>
-  ~ Transaksi <br>
-- Menu Transaksi <br>
-  ~ Menambahkan Transaksi <br>
-  ~ Menghitung Uang Transaksi <br>
-  ~ Mencetak Transaksi <br>
+Kasirian adalah sistem Point of Sale (POS) berbasis Laravel untuk membantu pengelolaan transaksi penjualan dengan mudah dan efisien.
 
-# Login
+## 🛠️ Teknologi yang Digunakan
 
-Untuk login aplikasi silakan masukkan Email dan Password berikut :
+- Laravel - Backend Framework
+- MySQL - Database Management
+- Bootstrap - UI Styling
 
-- Admin
-Email : admin@gmail.com <br>
-Password : admin <br>
-- Kasir 
-Email : kasir@gmail.com <br>
-Password : kasir <br>
+## 🔥 Fitur Utama
 
+- Manajemen produk & kategori
+- Manajemen stok barang
+- Transaksi penjualan & laporan
+- Dukungan multi-user dengan role-based access
+
+## 📂 Struktur Proyek
+
+```
+📦 kasirian
+├── 📁 app
+├── 📁 bootstrap
+├── 📁 config
+├── 📁 database
+├── 📁 public
+├── 📁 resources
+│   ├── 📁 views
+│   ├── 📁 css
+│   ├── 📁 js
+├── 📁 routes
+├── 📁 storage
+├── 📁 tests
+├── .env.example
+├── artisan
+├── composer.json
+├── package.json
+└── README.md
+```
+
+## 🚀 Instalasi & Penggunaan
+
+### 1️⃣ Clone Repository
+```sh
+git clone https://github.com/your-username/kasirian.git
+cd kasirian
+```
+
+### 2️⃣ Install Dependencies
+```sh
+composer install
+npm install
+```
+
+### 3️⃣ Konfigurasi Database
+1. Salin file `.env.example` menjadi `.env`
+2. Atur konfigurasi database di `.env`
+3. Jalankan migrasi database:
+   ```sh
+   php artisan migrate --seed
+   ```
+
+### 4️⃣ Menjalankan Aplikasi
+```sh
+php artisan serve
+```
+Akses aplikasi di `http://127.0.0.1:8000`
+
+## 🔗 Deployment
+
+Untuk deployment, gunakan layanan seperti:
+- Laravel Forge
+- DigitalOcean
+- VPS dengan Nginx/Apache
+- Heroku dengan database eksternal
+
+
+
+💡 Kontribusi & feedback sangat diterima!
 
   
 
