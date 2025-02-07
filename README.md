@@ -45,7 +45,7 @@ Kasirian adalah sistem Point of Sale (POS) berbasis Laravel untuk membantu penge
 
 ### 1️⃣ Clone Repository
 ```sh
-git clone [https://github.com/your-username/kasirian.git](https://github.com/ramdhannassyirah/KasirinAja.git)
+git clone https://github.com/ramdhannassyirah/KasirinAja.git
 cd KasirinAja
 ```
 
