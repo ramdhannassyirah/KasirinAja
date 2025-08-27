@@ -9,10 +9,9 @@
     <!-- Favicon icon -->
     <link rel="icon" type="/assets/image/png" sizes="16x16" href="/assets/images/favicon.png">
     <!-- Custom Stylesheet -->
-    <link href="/assets/plugins/tables/css/datatable/dataTables.bootstrap4.min.css" rel="stylesheet">
     <link href="/assets/css/style.css" rel="stylesheet">
-    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
-    @vite('resources/css/app.css')
+    @vite(['resources/css/app.css', 'resources/js/app.js'])
+
 </head>
 
 <body>

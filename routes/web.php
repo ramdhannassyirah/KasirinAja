@@ -6,6 +6,8 @@ use App\Http\Controllers\BarangController;
 use App\Http\Controllers\JenisBarangController;
 use App\Http\Controllers\TransaksiController;
 use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\ProdukController;
+use App\Http\Controllers\KategoriController;
 use App\Http\Middleware\AdminMiddleware;
 use App\Http\Middleware\KasirMiddleware;
 use Illuminate\Support\Facades\Route;
@@ -23,3 +25,5 @@ Route::resource('users', UserController::class)->middleware(AdminMiddleware::cla
 Route::resource('barang',BarangController::class)->middleware(AdminMiddleware::class);
 Route::resource('JenisBarang',JenisBarangController::class)->middleware(AdminMiddleware::class);
 Route::resource('transaksi', TransaksiController::class)->middleware(KasirMiddleware::class);
+Route::resource('produk', ProdukController::class)->middleware(AdminMiddleware::class);
+Route::resource('kategori', KategoriController::class)->middleware(AdminMiddleware::class);
